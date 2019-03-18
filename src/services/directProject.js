@@ -48,7 +48,7 @@ export default {
    * @returns {Promise} add pilot promise
    */
   addCopilot: (req, directProjectId, copilotUserId) => getHttpClient(req)
-    .post(`/projects/${directProjectId}/copilot`, { copilotUserId }),
+    .post(`/projects/${directProjectId}/copilot?userId=${config.directAdminUserId}`, { copilotUserId }),
 
   /**
    * Remove direct project copilot
@@ -59,7 +59,7 @@ export default {
    */
   deleteCopilot: (req, directProjectId, copilotUserId) => getHttpClient(req).request({
     method: 'delete',
-    url: `/projects/${directProjectId}/copilot`,
+    url: `/projects/${directProjectId}/copilot?userId=${config.directAdminUserId}`,
     data: { copilotUserId },
   }),
 
@@ -71,7 +71,7 @@ export default {
    * @returns {Promise} add billing account promise
    */
   addBillingAccount: (req, directProjectId, body) => getHttpClient(req)
-    .post(`/projects/${directProjectId}/billingaccount`, body),
+    .post(`/projects/${directProjectId}/billingaccount?userId=${config.directAdminUserId}`, body),
 
   /**
    * Add/remove direct project permissions
@@ -82,7 +82,7 @@ export default {
    * @returns {Promise} promise
    */
   editProjectPermissions: (req, directProjectId, body) => getHttpClient(req)
-    .post(`/projects/${directProjectId}/permissions`, body),
+    .post(`/projects/${directProjectId}/permissions?userId=${config.directAdminUserId}`, body),
 
   /**
    * Add direct project manager
@@ -92,7 +92,7 @@ export default {
    * @returns {Promise} add pilot promise
    */
   addManager: (req, directProjectId, userId) => getHttpClient(req)
-    .post(`/projects/${directProjectId}/permissions`, {
+    .post(`/projects/${directProjectId}/permissions?userId=${config.directAdminUserId}`, {
       permissions: [{
         userId,
         permissionType: {
@@ -111,7 +111,7 @@ export default {
    * @returns {Promise} response promise
    */
   deleteManager: (req, directProjectId, userId) => getHttpClient(req)
-    .post(`/projects/${directProjectId}/permissions`, {
+    .post(`/projects/${directProjectId}/permissions?userId=${config.directAdminUserId}`, {
       permissions: [{
         userId,
         permissionType: {
