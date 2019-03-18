@@ -76,7 +76,7 @@ workflows:
             - test
           filters:
             branches:
-              only: ['dev', 'feature/attachmentPermissions']
+              only: ['dev', 'feature/using_m2m_for_direct_api']
       - deployProd:
           requires:
             - test
