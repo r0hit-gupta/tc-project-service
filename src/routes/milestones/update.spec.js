@@ -184,7 +184,7 @@ describe('UPDATE Milestone', () => {
                     name: 'Milestone 3',
                     duration: 3,
                     startDate: '2018-05-14T00:00:00.000Z',
-                    status: 'open',
+                    status: 'completed',
                     type: 'type3',
                     order: 3,
                     plannedText: 'plannedText 3',
@@ -246,24 +246,6 @@ describe('UPDATE Milestone', () => {
                     activeText: 'activeText 6',
                     completedText: 'completedText 6',
                     blockedText: 'blockedText 6',
-                    createdBy: 2,
-                    updatedBy: 3,
-                    createdAt: '2018-05-11T00:00:00.000Z',
-                    updatedAt: '2018-05-11T00:00:00.000Z',
-                  },
-                  {
-                    id: 7,
-                    timelineId: 1, // Timeline 1
-                    name: 'Milestone 7',
-                    duration: 3,
-                    startDate: '2018-05-14T00:00:00.000Z',
-                    status: 'completed',
-                    type: 'type5',
-                    order: 1,
-                    plannedText: 'plannedText 7',
-                    activeText: 'activeText 7',
-                    completedText: 'completedText 7',
-                    blockedText: 'blockedText 7',
                     createdBy: 2,
                     updatedBy: 3,
                     createdAt: '2018-05-11T00:00:00.000Z',
@@ -382,8 +364,8 @@ describe('UPDATE Milestone', () => {
 
     it('should return 422 for modifying already completed milestones duration', (done) => {
       request(server)
-        .patch('/v4/timelines/1/milestones/7')
-        .send({param: {...body.param,status: 'completed'}})
+        .patch('/v4/timelines/1/milestones/3')
+        .send({ param: _.extend({}, body.param, { duration: 2 }) })
         .set({
           Authorization: `Bearer ${testUtil.jwts.admin}`,
         })
