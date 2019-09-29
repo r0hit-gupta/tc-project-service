@@ -949,7 +949,7 @@ describe('UPDATE Milestone', () => {
           Authorization: `Bearer ${testUtil.jwts.admin}`,
         })
         .send({ param: _.assign({}, body.param, {
-          completionDate: '2018-05-18T00:00:00.000Z', order: undefined, duration: undefined,
+          completionDate: '2018-05-19T00:00:00.000Z', order: undefined, duration: undefined,
         }) })
         .expect(200)
         .end(() => {
