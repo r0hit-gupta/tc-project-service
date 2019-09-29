@@ -513,12 +513,14 @@ describe('UPDATE Milestone', () => {
     });
 
     it('should return 200 for admin', (done) => {
+      const newBody = _.cloneDeep(body);
+      newBody.param.completionDate = '2018-05-15T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
           Authorization: `Bearer ${testUtil.jwts.admin}`,
         })
-        .send(body)
+        .send(newBody)
         .expect(200)
         .end((err, res) => {
           const resJson = res.body.result.content;
@@ -1074,8 +1076,6 @@ describe('UPDATE Milestone', () => {
     });
 
     it('should return 200 for connect admin', (done) => {
-      const newBody = _.cloneDeep(body);
-      newBody.param.completionDate = '2018-05-15T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
