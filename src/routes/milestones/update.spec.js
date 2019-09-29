@@ -315,7 +315,7 @@ describe('UPDATE Milestone', () => {
 
     it('should return 403 for non-admin member updating the actualStartDate', (done) => {
       const newBody = _.cloneDeep(body);
-      newBody.param.actualStartDate = '2018-01-16T00:00:00.000Z';
+      newBody.param.actualStartDate = '2018-05-15T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
@@ -528,7 +528,7 @@ describe('UPDATE Milestone', () => {
           resJson.name.should.be.eql(body.param.name);
           resJson.description.should.be.eql(body.param.description);
           resJson.duration.should.be.eql(body.param.duration);
-          resJson.completionDate.should.be.eql(body.param.completionDate);
+          resJson.completionDate.should.be.eql(newBody.param.completionDate);
           resJson.status.should.be.eql(body.param.status);
           resJson.type.should.be.eql(body.param.type);
           resJson.details.should.be.eql({
@@ -1088,7 +1088,7 @@ describe('UPDATE Milestone', () => {
 
     it('should return 200 for admin updating the completionDate', (done) => {
       const newBody = _.cloneDeep(body);
-      newBody.param.completionDate = '2019-05-16T00:00:00.000Z';
+      newBody.param.completionDate = '2018-05-16T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
@@ -1100,7 +1100,7 @@ describe('UPDATE Milestone', () => {
 
     it('should return 200 for admin updating the actualStartDate', (done) => {
       const newBody = _.cloneDeep(body);
-      newBody.param.actualStartDate = '2017-01-16T00:00:00.000Z';
+      newBody.param.actualStartDate = '2018-05-15T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
