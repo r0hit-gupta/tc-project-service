@@ -309,7 +309,7 @@ describe('UPDATE Milestone', () => {
         .set({
           Authorization: `Bearer ${testUtil.jwts.manager}`,
         })
-        .send(body)
+        .send(newBody)
         .expect(403, done);
     });
 
@@ -1081,7 +1081,7 @@ describe('UPDATE Milestone', () => {
         .set({
           Authorization: `Bearer ${testUtil.jwts.connectAdmin}`,
         })
-        .send(newBody)
+        .send(body)
         .expect(200)
         .end(done);
     });
