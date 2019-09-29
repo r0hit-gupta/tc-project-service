@@ -306,7 +306,7 @@ describe('UPDATE Milestone', () => {
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
-          Authorization: `Bearer ${testUtil.jwts.member2}`,
+          Authorization: `Bearer ${testUtil.jwts.copilot}`,
         })
         .send(body)
         .expect(403, done);
@@ -318,7 +318,7 @@ describe('UPDATE Milestone', () => {
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
-          Authorization: `Bearer ${testUtil.jwts.member2}`,
+          Authorization: `Bearer ${testUtil.jwts.copilot}`,
         })
         .send(newBody)
         .expect(403, done);
