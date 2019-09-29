@@ -264,7 +264,6 @@ describe('UPDATE Milestone', () => {
       param: {
         name: 'Milestone 1-updated',
         duration: 3,
-        // completionDate: '2018-05-16T00:00:00.000Z',
         description: 'description-updated',
         status: 'draft',
         type: 'type1-updated',
@@ -303,6 +302,8 @@ describe('UPDATE Milestone', () => {
     });
 
     it('should return 403 for non-admin member updating the completionDate', (done) => {
+      const newBody = _.cloneDeep(body);
+      newBody.completionDate = '2018-01-16T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
@@ -1073,29 +1074,35 @@ describe('UPDATE Milestone', () => {
     });
 
     it('should return 200 for connect admin', (done) => {
+      const newBody = _.cloneDeep(body);
+      newBody.completionDate = '2018-05-16T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
           Authorization: `Bearer ${testUtil.jwts.connectAdmin}`,
         })
-        .send(body)
+        .send(newBody)
         .expect(200)
         .end(done);
     });
 
     it('should return 200 for admin updating the completionDate', (done) => {
+      const newBody = _.cloneDeep(body);
+      newBody.actualStartDate = '2018-01-16T00:00:00.000Z';
+      newBody.completionDate = '2018-05-16T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
           Authorization: `Bearer ${testUtil.jwts.admin}`,
         })
-        .send(body)
+        .send(newBody)
         .expect(200, done);
     });
 
     it('should return 200 for admin updating the actualStartDate', (done) => {
       const newBody = _.cloneDeep(body);
       newBody.actualStartDate = '2018-01-16T00:00:00.000Z';
+      newBody.completionDate = '2018-05-16T00:00:00.000Z';
       request(server)
         .patch('/v4/timelines/1/milestones/1')
         .set({
