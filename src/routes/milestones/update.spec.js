@@ -949,7 +949,7 @@ describe('UPDATE Milestone', () => {
           Authorization: `Bearer ${testUtil.jwts.admin}`,
         })
         .send({ param: _.assign({}, body.param, {
-          completionDate: '2018-05-19T00:00:00.000Z', order: undefined, duration: undefined,
+          completionDate: '2018-05-18T00:00:00.000Z', order: undefined, duration: undefined,
         }) })
         .expect(200)
         .end(() => {
@@ -961,7 +961,7 @@ describe('UPDATE Milestone', () => {
             .then((milestone) => {
               milestone.startDate.should.be.eql(new Date('2018-05-19T00:00:00.000Z'));
               should.exist(milestone.actualStartDate);
-              moment().utc(milestone.actualStartDate).diff(today, 'days').should.be.eql(0);
+              moment().utc(milestone.actualStartDate).diff(today, 'days').should.be.eql(1);
               // milestone.actualStartDate.should.be.eql(today);
               milestone.endDate.should.be.eql(new Date('2018-05-21T00:00:00.000Z'));
               milestone.status.should.be.eql(MILESTONE_STATUS.ACTIVE);
